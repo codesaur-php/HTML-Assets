@@ -68,19 +68,19 @@ var Dashboard = function() {
             }, settings);
             
             $(`<div class="modal fade" id="` + options.modal.id + `" role="dialog" aria-labelledby="dashboard-modal-label" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog ` + options.modal.size + ` modal-dialog-centered" role="document">'
-                <div class="modal-content">
-                    <div class="modal-header modal-header-solid">
-                        <h5 class="modal-title text-uppercase" id="dashboard-modal-label">` + options.modal.title + `</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="` + options.modal.close + `"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">` + options.modal.loading + `</div>
-                    <div class="modal-footer modal-footer-solid">
-                        <button class="btn btn-secondary" data-dismiss="modal">` + options.modal.close + `</button>
+                    <div class="modal-dialog ` + options.modal.size + ` modal-dialog-centered" role="document">'
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-solid">
+                            <h5 class="modal-title text-uppercase" id="dashboard-modal-label">` + options.modal.title + `</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="` + options.modal.close + `"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">` + options.modal.loading + `</div>
+                        <div class="modal-footer modal-footer-solid">
+                            <button class="btn btn-secondary" data-dismiss="modal">` + options.modal.close + `</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>`).appendTo('body');
+            </div>`).appendTo('body');
             
             document.querySelectorAll('[data-toggle="modal"]').forEach(function(link) {
                 link.addEventListener('click', function() {
