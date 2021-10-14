@@ -45,12 +45,10 @@ var Dashboard = function() {
                     selector: '.submit'
                 },
                 modal: {
-                    id: 'dashboard-modal',
-                    title: 'Modal',
+                    id:      'dashboard-modal',
+                    size:    'modal-lg',
                     loading: 'Loading ...',
-                    size: 'modal-lg',
-                    submit: '.submit',
-                    close: 'Close'
+                    submit:  '.submit'                    
                 },
                 notify: {
                      position: 'top',
@@ -60,6 +58,7 @@ var Dashboard = function() {
                 text: {
                     notice:        'Notice',
                     error:         'Error',
+                    close:         'Close',
                     processing:    'Processing ...',
                     invalid_res:   'Invalid response!',
                     conn_error:    'Connection error!',
@@ -71,12 +70,12 @@ var Dashboard = function() {
                 <div class="modal-dialog ` + options.modal.size + ` modal-dialog-centered" role="document">'
                     <div class="modal-content">
                         <div class="modal-header modal-header-solid">
-                            <h5 class="modal-title text-uppercase" id="dashboard-modal-label">` + options.modal.title + `</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="` + options.modal.close + `"><span aria-hidden="true">&times;</span></button>
+                            <h5 class="modal-title text-uppercase" id="dashboard-modal-label">Modal</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="` + options.text.close + `"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">` + options.modal.loading + `</div>
                         <div class="modal-footer modal-footer-solid">
-                            <button class="btn btn-secondary" data-dismiss="modal">` + options.modal.close + `</button>
+                            <button class="btn btn-secondary" data-dismiss="modal">` + options.text.close + `</button>
                         </div>
                     </div>
                 </div>
