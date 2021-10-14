@@ -68,7 +68,7 @@ var Dashboard = function() {
             }, settings);
             
             $(`<div class="modal fade" id="` + options.modal.id + `" role="dialog" aria-labelledby="dashboard-modal-label" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog ` + options.modal.size + ` modal-dialog-centered" role="document">'
+                <div class="modal-dialog ` + options.modal.size + ` modal-dialog-centered" role="document">'
                     <div class="modal-content">
                         <div class="modal-header modal-header-solid">
                             <h5 class="modal-title text-uppercase" id="dashboard-modal-label">` + options.modal.title + `</h5>
