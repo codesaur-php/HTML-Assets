@@ -28,23 +28,18 @@ body {
         top: 5rem;
     }
 }
-.sidebar .feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-}
 .sidebar .nav-link {
     font-weight: 500;
     color: #aedfc8;
 }
-.sidebar .nav-link .feather {
+.sidebar .nav-link .side-menu-icon {
     margin-right: 4px;
     color: #727272;
 }
 .sidebar .nav-link.active {
     color: #198754;
 }
-.sidebar .nav-link:hover .feather, .sidebar .nav-link.active .feather {
+.sidebar .nav-link:hover .side-menu-icon, .sidebar .nav-link.active .side-menu-icon {
     color: inherit;
 }
 .sidebar-heading {

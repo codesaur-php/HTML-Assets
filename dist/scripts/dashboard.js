@@ -1,4 +1,4 @@
-/* global swal, ClassicEditor */
+/* global swal */
 
 var Dashboard = function() {
     var options;
@@ -106,15 +106,6 @@ var Dashboard = function() {
                 button.addClass('btn-spinner');
                 button.buttonLoader('start');
                 button.attr('disabled', true);
-            }
-            
-            if (typeof Dashboard.textarea !== 'undefined') {
-                for (var item in Dashboard.textarea) {
-                    if (typeof Dashboard.textarea[item] !== 'undefined') {
-                        Dashboard.textarea[item].destroy(); 
-                        Dashboard.textarea[item] = undefined;
-                    }
-                }
             }
 
             var data = {};
@@ -265,28 +256,6 @@ var Dashboard = function() {
                     }
                 };
                 xhr.send();
-            }
-        },
-        
-        editor: function(id, btn = null) {
-            if (typeof Dashboard.textarea === 'undefined') {
-                Dashboard.textarea = [];
-            }
-
-            if (typeof Dashboard.textarea[id] !== 'undefined') {
-                Dashboard.textarea[id].destroy();
-                Dashboard.textarea[id] = undefined;
-                if (btn) {
-                    btn.innerHTML = 'html';
-                }
-            } else {
-                ClassicEditor
-                        .create(document.querySelector('#' + id))
-                        .then(editor => Dashboard.textarea[id] = editor)
-                        .catch(error => console.error(error));
-                if (btn) {
-                    btn.innerHTML = 'editor';
-                }
             }
         },
         
