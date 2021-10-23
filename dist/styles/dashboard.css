@@ -87,3 +87,12 @@ body {
     color: #fff;
     opacity: 0.5;
 }
+.header-user-menu a {
+    color: white;
+}
+.header-user-menu a:hover {
+    color: black;
+}
+.header-user-menu .dropdown-divider {
+    border-color: #ddd;
+}
