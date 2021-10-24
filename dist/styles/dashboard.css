@@ -87,3 +87,24 @@ body {
     color: #fff;
     opacity: 0.5;
 }
+.navbar .lang-menu a {
+    color: white;
+    font-size: 0.9rem
+}
+.navbar .lang-menu a img {
+    position: relative;
+    top: -1px;
+    padding-right: 5px
+}
+.navbar .lang-menu a:hover {
+    color: black
+}
+.navbar-brand img {
+    position: relative;
+    top:-1px;
+    height: 20px;
+    padding-right: 0.3rem;
+}
+.sidebar-logout-icon {
+    font-size: 1.1rem;
+}
