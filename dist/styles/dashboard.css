@@ -87,6 +87,12 @@ body {
     color: #fff;
     opacity: 0.5;
 }
+.navbar-brand img {
+    position: relative;
+    top: -1px;
+    height: 20px;
+    margin-right: 5px;
+}
 .navbar .lang-menu img {
     position: relative;
     top: -1px;
@@ -102,15 +108,13 @@ body {
     color: black
 }
 .navbar .lang-menu a img {
-    padding-right: 5px;
+    margin-right: 5px;
     height: 11px;
-}
-.navbar-brand img {
-    position: relative;
-    top: -1px;
-    height: 20px;
-    padding-right: 0.3rem;
 }
 .sidebar-logout-icon {
     font-size: 1.1rem;
+}
+.account-profile-photo {
+    height: 26px;
+    margin-right: 5px;
 }
