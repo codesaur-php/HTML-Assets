@@ -71,7 +71,7 @@ var Dashboard = function() {
                     <div class="modal-content">
                         <div class="modal-header modal-header-solid">
                             <h5 class="modal-title text-uppercase" id="dashboard-modal-label">Modal</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="` + options.text.close + `"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="` + options.text.close + `"></button>
                         </div>
                         <div class="modal-body">` + options.modal.loading + `</div>
                         <div class="modal-footer modal-footer-solid">
