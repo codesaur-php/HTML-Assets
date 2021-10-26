@@ -75,18 +75,18 @@ var Dashboard = function() {
                         </div>
                         <div class="modal-body">` + options.modal.loading + `</div>
                         <div class="modal-footer modal-footer-solid">
-                            <button class="btn btn-secondary" data-dismiss="modal">` + options.text.close + `</button>
+                            <button class="btn btn-secondary shadow-sm" data-bs-dismiss="modal">` + options.text.close + `</button>
                         </div>
                     </div>
                 </div>
             </div>`).appendTo('body');
             
-            document.querySelectorAll('[data-toggle="modal"]').forEach(function(link) {
+            document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#' + options.modal.id + '"]').forEach(function(link) {
                 link.addEventListener('click', function() {
                     Dashboard.modal(link);
                 });
             });
-                        
+            
             handleSubmit(options.submit.selector);
             
             let modalSelector = '#' + options.modal.id;
@@ -219,12 +219,6 @@ var Dashboard = function() {
             }
         },
         
-        ajaxModal: function(parent, selector = '.ajax-modal') {
-            parent.on('click', selector, function (e) {
-                Dashboard.modal(this);
-            });
-        },
-        
         modal: function(link) {
             var url = 'javascript:;';
             if (link.hasAttribute('href')) {
@@ -239,7 +233,7 @@ var Dashboard = function() {
                 xhr.onload = function() {
                     if (xhr.status === 200) {
                         try {
-                            var modal = link.getAttribute('data-target');
+                            var modal = link.getAttribute('data-bs-target');
                             if (modal === null || modal === '') {
                                 modal = '#' + options.modal.id;
                             }

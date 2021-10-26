@@ -16,7 +16,7 @@
                 yes:      'Yes',
                 no:       'No',
                 title:    'Confirmation',
-                question: '<p class="text-danger mb-3"><i class="la la-trash"></i> Are you sure to delete this record?</p>'
+                question: '<p class="text-danger mb-3"><i class="bi bi-trash"></i> Are you sure to delete this record?</p>'
             }            
         }, options);
 
@@ -55,11 +55,11 @@
                 inputType: settings.inputType,
                 buttons: {
                     confirm: {
-                        label: '<i class="fa fa-check"></i> ' + settings.text.yes,
+                        label: '<i class="bi bi-check"></i> ' + settings.text.yes,
                         className: 'btn-danger'
                     },
                     cancel: {
-                        label: '<i class="fa fa-times"></i> ' + settings.text.no,
+                        label: '<i class="bi bi-x"></i> ' + settings.text.no,
                         className: 'btn-light'
                     }
                 },

@@ -53,7 +53,7 @@
             },
             FilesAdded: function(up, files) {
                 plupload.each(files, function(file) {
-                    $(settings.DOM.files_selector).append('<div class="alert alert-info added-files" id="' + file.id + '">' + file.name + '(' + plupload.formatSize(file.size) + ') &nbsp;&nbsp; <span class="status badge badge-info"></span> <a href="javascript:;" style="margin-top:-5px" class="remove float-right btn btn-sm btn-danger text-lowercase"><i class="la la-trash"></i> ' + settings.texts.remove + '</a></div>');
+                    $(settings.DOM.files_selector).append('<div class="alert alert-info added-files" id="' + file.id + '">' + file.name + '(' + plupload.formatSize(file.size) + ') &nbsp;&nbsp; <span class="status badge badge-info"></span> <a href="javascript:;" style="margin-top:-5px" class="remove float-right btn btn-sm btn-danger text-lowercase"><i class="bi bi-trash"></i> ' + settings.texts.remove + '</a></div>');
                 });
                 
                 if ($(settings.DOM.files_selector + ' .added-files').length > 0) {
@@ -75,7 +75,7 @@
                     
                     $('#' + file.id + ' > .remove').remove();
                     $('#' + file.id).removeClass('added-files');
-                    $('#' + file.id + ' > .status').removeClass('badge-light').addClass('badge-success').html('<i class="la la-check"></i> ' + settings.texts.success);
+                    $('#' + file.id + ' > .status').removeClass('badge-light').addClass('badge-success').html('<i class="bi bi-check"></i> ' + settings.texts.success);
 
                     if (callback && typeof callback === "function") {
                         callback(file, res);
@@ -84,7 +84,7 @@
                     }
                 }
                 catch (err) {
-                    $('#' + file.id + ' > .status').removeClass('badge-light').addClass('badge-danger').html('<i class="la la-warning"></i> ' + settings.texts.failure);
+                    $('#' + file.id + ' > .status').removeClass('badge-light').addClass('badge-danger').html('<i class="bi bi-exclamation-triangle"></i> ' + settings.texts.failure);
                     
                     if (err instanceof SyntaxError) err = 'Invalid request!';
                     else if (res && res.error && res.error.message) err = res.error.message;
@@ -100,7 +100,7 @@
             },
             Error: function(up, err) {
                 if (currentFileId) {
-                    $('#' + currentFileId + ' > .status').removeClass('badge-light').addClass('badge-danger').html('<i class="la la-warning"></i> ' + settings.texts.failure);
+                    $('#' + currentFileId + ' > .status').removeClass('badge-light').addClass('badge-danger').html('<i class="bi bi-exclamation-triangle"></i> ' + settings.texts.failure);
                     currentFileId = null;
                 }
                 
