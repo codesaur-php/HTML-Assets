@@ -56,6 +56,7 @@ var Dashboard = function() {
                      time:     2500
                 },
                 text: {
+                    title:         'Title',
                     notice:        'Notice',
                     error:         'Error',
                     close:         'Close',
@@ -70,7 +71,7 @@ var Dashboard = function() {
                 <div class="modal-dialog ` + options.modal.size + ` modal-dialog-centered" role="document">'
                     <div class="modal-content">
                         <div class="modal-header modal-header-solid">
-                            <h5 class="modal-title text-uppercase" id="dashboard-modal-label">Modal</h5>
+                            <h5 class="modal-title text-uppercase" id="dashboard-modal-label">` + options.text.title + `</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="` + options.text.close + `"></button>
                         </div>
                         <div class="modal-body">` + options.modal.loading + `</div>
