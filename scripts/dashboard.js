@@ -27,7 +27,9 @@ var Dashboard = function() {
             method: form.attr('method'),
             success: function(response, status, xhr)
             {
-                if (callback && typeof callback === 'function') {
+                button.spinLoader('stop');
+                
+                if (callback && typeof callback === 'function') {                    
                     return callback(response, status, button, form, modalSelector);
                 }
                 
@@ -42,8 +44,6 @@ var Dashboard = function() {
                     if (table && table.length && $.fn.DataTable.isDataTable(table)) {
                         table.DataTable().ajax.reload(null, false);
                     }
-
-                    button.spinLoader('stop');
 
                     if (modalSelector) {
                         $(modalSelector).modal('hide');
@@ -60,10 +60,8 @@ var Dashboard = function() {
             error: function (xhr, status, error)
             {
                 $(this).notifyMe('top', 'default', content.error, content.cant_complete, 200, 3000);
-
-                if (typeof button !== 'undefined') {
-                    button.spinLoader('stop');
-                }
+                
+                button.spinLoader('stop');
             }
         });
     };
@@ -83,7 +81,7 @@ var Dashboard = function() {
                 cant_complete: 'Can\'t complete request'
             }, settings);
             
-            let defaultModalBody = `<div class="modal fade" id="dashboard-modal" role="dialog" aria-labelledby="dashboard-modal-label" tabindex="-1" aria-hidden="true">
+            $(`<div class="modal fade" id="dashboard-modal" role="dialog" aria-labelledby="dashboard-modal-label" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">'
                     <div class="modal-content">
                         <div class="modal-header modal-header-solid">
@@ -96,9 +94,7 @@ var Dashboard = function() {
                         </div>
                     </div>
                 </div>
-            </div>`;
-            
-            $(defaultModalBody).appendTo('body');
+            </div>`).appendTo('body');
             
             document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#dashboard-modal"]').forEach(function(ele) {
                 ele.addEventListener('click', function() {
@@ -108,8 +104,9 @@ var Dashboard = function() {
             
             Dashboard.handleSubmit('.dashboard-submit');
             
+            let modalLoadingContent = document.querySelector('#dashboard-modal').innerHTML;
             $('#dashboard-modal').on('hidden.bs.modal', function() {
-                $(this).html(defaultModalBody);
+                $(this).html(modalLoadingContent);
             });
         },
         
