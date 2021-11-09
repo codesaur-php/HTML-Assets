@@ -1,7 +1,7 @@
 /* global AjaxModal */
 var Dashboard = function() {
     return {
-        init: function(modalId, loadingText) {            
+        init: function(loadingText) {            
             if (!String.prototype.format) {
               String.prototype.format = function() {
                 var args = arguments;
@@ -13,7 +13,7 @@ var Dashboard = function() {
             
             const loader = '<span class="spinner-border spinner-border-sm text-secondary" role="status" aria-hidden="true" style="margin-right:5px;top:1px;position:relative"></span> ' + loadingText + ' ...';
             
-            AjaxModal.append(modalId, loader);
+            AjaxModal.append('dashboard-modal', loader);
 
             ScrollUp();
         },
