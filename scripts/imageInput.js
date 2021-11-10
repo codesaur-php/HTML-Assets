@@ -1,5 +1,6 @@
 /* global Element */
 Element.prototype.imageInput = function(
+        src,
         placeholder = 'Choose a file',
         choose = 'Choose',
         change = 'Change',
@@ -20,14 +21,11 @@ Element.prototype.imageInput = function(
     const self = this;
     const removeSelector = '.' + name + '-remove';
     
+    self.setAttribute('data-record-name', name);
+    
     const inputGroup = document.createElement('div');
     inputGroup.classList.add('input-group');
     self.after(inputGroup);
-
-    const imagePreview = document.createElement('img');
-    imagePreview.id = name + '_preview';
-    imagePreview.classList.add('img-thumbnail', 'img-fluid');
-    inputGroup.after(imagePreview);    
 
     const fileNameInput = document.createElement('input');
     fileNameInput.type = 'text';
@@ -61,27 +59,47 @@ Element.prototype.imageInput = function(
         var reader = new FileReader();
         reader.onload = function(e) {
             imagePreview.src = e.target.result;
-            btnBrowse.innerHTML = change;
-            const btnRemove = btnGroup.querySelector(removeSelector);
-            if (!btnRemove) {
-                const button = document.createElement('button');
-                button.type = 'button';
-                button.innerHTML = remove;
-                button.classList.add(name + '-remove', 'btn', 'btn-danger');
-                btnGroup.appendChild(button);
-
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    imagePreview.removeAttribute('src');
-                    fileNameInput.value = '';
-                    self.value = '';
-                    btnBrowse.innerHTML = choose;
-                    this.parentNode.removeChild(this);
-                });
+            btnBrowse.innerHTML = change;            
+            appendRemoveBtn();
+            
+            if (!self.name) {
+                self.name = self.getAttribute('data-record-name');
             }
         };
         
         reader.readAsDataURL(this.files[0]);
     });
+    
+    const imagePreview = document.createElement('img');
+    imagePreview.id = name + '_preview';
+    if (src) {
+        imagePreview.src = src;
+        fileNameInput.value = src.replace(/^.*[\\\/]/, '');
+        appendRemoveBtn();
+    }
+    imagePreview.classList.add('img-thumbnail', 'img-fluid');
+    inputGroup.after(imagePreview);
+    
+    function appendRemoveBtn() {
+        const btnRemove = btnGroup.querySelector(removeSelector);
+        if (!btnRemove) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.innerHTML = remove;
+            button.classList.add(name + '-remove', 'btn', 'btn-danger');
+            btnGroup.appendChild(button);
+
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                imagePreview.removeAttribute('src');
+                fileNameInput.value = '';
+                self.value = '';
+                btnBrowse.innerHTML = choose;
+                this.parentNode.removeChild(this);
+                
+                self.removeAttribute('name');
+            });
+        }
+    }
 };
