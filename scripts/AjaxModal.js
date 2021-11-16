@@ -1,15 +1,3 @@
-/* global Element */
-Element.prototype.modalHandle = function(childSelector) {
-    this.addEventListener('click', function(e) {
-        for (var target = e.target; target && target !== this; target = target.parentNode) {
-            if (target.matches(childSelector)) {
-                AjaxModal.ajaxContent(target);
-                break;
-            }
-        }
-    }, false);
-};
-
 var AjaxModal = function() {
     var options = {};
     

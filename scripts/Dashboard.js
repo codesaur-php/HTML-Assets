@@ -1,4 +1,15 @@
-/* global AjaxModal */
+/* global Element, AjaxModal */
+Element.prototype.onChildClick = function(childSelector, handler) {
+    this.addEventListener('click', function(e) {
+        for (var target = e.target; target && target !== this; target = target.parentNode) {
+            if (target.matches(childSelector)) {
+                handler(target, e);
+                break;
+            }
+        }
+    }, false);
+};
+
 var Dashboard = function() {
     return {
         init: function(loadingText) {            
