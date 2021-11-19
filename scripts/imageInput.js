@@ -5,6 +5,7 @@ Element.prototype.imageInput = function(
         choose = 'Choose',
         change = 'Change',
         remove = 'Remove',
+        maxHeight = 0,
         maxLength = 256,
         accept = 'image/*'
 ) {
@@ -72,6 +73,9 @@ Element.prototype.imageInput = function(
     
     const imagePreview = document.createElement('img');
     imagePreview.id = name + '_preview';
+    if (maxHeight > 0) {
+        imagePreview.style = 'max-height:' + maxHeight + 'px';
+    }
     if (src) {
         imagePreview.src = src;
         fileNameInput.value = src.replace(/^.*[\\\/]/, '');
