@@ -5,8 +5,6 @@ var SubmitForm = function(submittersSelector, formSelector, callbackSuccess, cal
         return NotifyTop('danger', window.texts && window.texts['error'] ? window.texts['error'] : 'Error', 'Form submitters not found!');
     }
     
-    var form = document.querySelector(formSelector);
-    
     submitters.forEach(function(button) {
         button.addEventListener('click', function (e) {
             e.preventDefault();
@@ -30,6 +28,7 @@ var SubmitForm = function(submittersSelector, formSelector, callbackSuccess, cal
                 submit_btn.spinner('start', 'border', true);
             });
             
+            let form = document.querySelector(formSelector);
             if (!form) {
                 form = this.closest('form');
                 if (!form) {
@@ -38,80 +37,77 @@ var SubmitForm = function(submittersSelector, formSelector, callbackSuccess, cal
                 }
             }
             
-            if (!form.hasAttribute('hasSubmitHandler')) {
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
 
-                    const _valid = this.checkValidity();
-                    this.classList.add('was-validated');
-                    if (!_valid) {
-                        event.stopPropagation();
+                const _valid = this.checkValidity();
+                this.classList.add('was-validated');
+                if (!_valid) {
+                    event.stopPropagation();
 
+                    stopSubmitters();
+
+                    let response = {
+                        type: 'validation-error',
+                        title: textError,
+                        error: {
+                            message: textFormValidationError
+                        }
+                    };
+                    if (callbackError) {
+                        return callbackError(response);
+                    }
+                    return NotifyTop('danger', response.title, response.error.message);
+                } else {
+                    const url = this.getAttribute('action');
+                    let method = this.getAttribute('method');
+                    if (!method) {
+                        method = 'POST';
+                    }
+                    const data = new FormData(this);
+                    fetch(url, {
+                        method: method,
+                        body: data
+                    }).then(res => {
                         stopSubmitters();
 
+                        if (!res.ok) {
+                            throw new Error(res.statusText);
+                        }
+
+                        return res.json();
+                    }).then(response => {
+                        if (response.status !== 'success') {
+                            throw new Error(response.message ? response.message : 'Invalid response!');
+                        }
+
+                        if (callbackSuccess) {
+                            return callbackSuccess(response);
+                        }
+
+                        let type = response.type ? response.type : 'success';
+                        let title = response.title ? response.title : textSuccess;
+                        NotifyTop(type, title, response.message ? response.message : '');
+
+                        if (response.href
+                                && response.href !== 'javascript:;'
+                        ) {
+                            window.location.href = response.href;
+                        }
+                    })
+                    .catch(error => {
                         let response = {
-                            type: 'validation-error',
+                            type: 'error-error',
                             title: textError,
-                            error: {
-                                message: textFormValidationError
-                            }
-                        };
+                            error: error
+                        };                            
                         if (callbackError) {
-                            return callbackError(response);
+                            return callbackError(error);
                         }
                         return NotifyTop('danger', response.title, response.error.message);
-                    } else {
-                        const url = this.getAttribute('action');
-                        let method = this.getAttribute('method');
-                        if (!method) {
-                            method = 'POST';
-                        }
-                        const data = new FormData(this);
-                        fetch(url, {
-                            method: method,
-                            body: data
-                        }).then(res => {
-                            stopSubmitters();
-
-                            if (!res.ok) {
-                                throw new Error(res.statusText);
-                            }
-
-                            return res.json();
-                        }).then(response => {
-                            if (response.status !== 'success') {
-                                throw new Error(response.message ? response.message : 'Invalid response!');
-                            }
-
-                            if (callbackSuccess) {
-                                return callbackSuccess(response);
-                            }
-
-                            let type = response.type ? response.type : 'success';
-                            let title = response.title ? response.title : textSuccess;
-                            NotifyTop(type, title, response.message ? response.message : '');
-
-                            if (response.href
-                                    && response.href !== 'javascript:;'
-                            ) {
-                                window.location.href = response.href;
-                            }
-                        })
-                        .catch(error => {
-                            let response = {
-                                type: 'error-error',
-                                title: textError,
-                                error: error
-                            };                            
-                            if (callbackError) {
-                                return callbackError(error);
-                            }
-                            return NotifyTop('danger', response.title, response.error.message);
-                        });
-                    }
-                }, false);
-                form.setAttribute('hasSubmitHandler', true);
-            }
+                    });
+                }
+            }, false);
             
             const submit = form.ownerDocument.createElement('input');
             submit.style.display = 'none';
