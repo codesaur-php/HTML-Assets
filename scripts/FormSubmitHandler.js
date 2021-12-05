@@ -1,6 +1,13 @@
-/* global Element, fetch */
-var SubmitForm = function(submittersSelector, formSelector, callbackSuccess, callbackError) {
-    var submitters = document.querySelectorAll(submittersSelector);
+/* global HTMLElement, fetch */
+var FormSubmitHandler = function(submitter, formSelector, callbackSuccess, callbackError) {
+    let submitters = null;
+    if (typeof submitter === 'string') {
+        submitters = document.querySelectorAll(submitter);
+    } else if (typeof HTMLElement === 'object' ? submitter instanceof HTMLElement : submitter
+            && typeof submitter === 'object' && submitter !== null && submitter.nodeType === 1 && typeof submitter.nodeName === 'string'
+    ) {
+        submitters = [submitter];
+    }
     if (!submitters) {
         return NotifyTop('danger', window.texts && window.texts['error'] ? window.texts['error'] : 'Error', 'Form submitters not found!');
     }
