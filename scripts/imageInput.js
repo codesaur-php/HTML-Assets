@@ -57,7 +57,7 @@ Element.prototype.imageInput = function(
     self.addEventListener('change', function(e) {
         fileNameInput.value = e.target.files[0].name;
         
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function(e) {
             imagePreview.src = e.target.result;
             btnBrowse.innerHTML = change;            

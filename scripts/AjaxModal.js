@@ -57,8 +57,8 @@ var AjaxModal = function() {
                             modalDiv.innerHTML = xhr.responseText;
                         }
 
-                        var parser = new DOMParser();
-                        var modalDocument = parser.parseFromString(xhr.responseText, 'text/html');
+                        let parser = new DOMParser();
+                        let modalDocument = parser.parseFromString(xhr.responseText, 'text/html');
                         modalDocument.querySelectorAll('script[type="text/javascript"]').forEach(function(element) {
                             eval(element.innerHTML);
                         });
