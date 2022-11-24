@@ -46,24 +46,22 @@ var AjaxModal = function() {
             let xhr = new XMLHttpRequest();
             xhr.open('GET', url);
             xhr.onload = function() {
-                if (xhr.status === 200) {
-                    try {
-                        let modal = element.getAttribute('data-bs-target');
-                        if (modal === null || modal === '') {
-                            modal = '#' + options.id;
-                        }
-                        let modalDiv = document.querySelector(modal);
-                        if (modalDiv) {
-                            modalDiv.innerHTML = xhr.responseText;
-                        }
-
-                        let parser = new DOMParser();
-                        let modalDocument = parser.parseFromString(xhr.responseText, 'text/html');
-                        modalDocument.querySelectorAll('script[type="text/javascript"]').forEach(function(element) {
-                            eval(element.innerHTML);
-                        });
-                    } catch(e) {
+                try {
+                    let modal = element.getAttribute('data-bs-target');
+                    if (modal === null || modal === '') {
+                        modal = '#' + options.id;
                     }
+                    let modalDiv = document.querySelector(modal);
+                    if (modalDiv) {
+                        modalDiv.innerHTML = xhr.responseText;
+                    }
+
+                    let parser = new DOMParser();
+                    let modalDocument = parser.parseFromString(xhr.responseText, 'text/html');
+                    modalDocument.querySelectorAll('script[type="text/javascript"]').forEach(function(element) {
+                        eval(element.innerHTML);
+                    });
+                } catch(e) {
                 }
             };
             xhr.send();
