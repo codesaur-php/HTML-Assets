@@ -173,3 +173,45 @@ ul.gainsboro {
         font-size: 3.5rem;
     }
 }
+
+.bd-bordered {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem -.75rem 0;
+    border: 1px solid #dee2e6!important;
+}
+.bd-bordered::after {
+    display: block;
+    clear: both;
+    content: "";
+}
+@media (min-width: 576px) {
+    .bd-bordered {
+        padding: 1.5rem;
+        margin-right: 0;
+        margin-left: 0;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+    }
+}
+.bd-bordered-success {
+    border-color: #14A44D!important;
+}
+.bd-bordered-primary {
+    border-color: #3B71CA!important;
+}
+.bd-bordered-danger {
+    border-color: #DC4C64!important;
+}
+.bd-bordered-success {
+    border-color: #14A44D!important;
+}
+.bd-bordered-warning {
+    border-color: #E4A11B!important;
+}
+.bd-bordered-info {
+    border-color: #54B4D3!important;
+}
+.bd-bordered-dark {
+    border-color: #332D2D!important;
+}

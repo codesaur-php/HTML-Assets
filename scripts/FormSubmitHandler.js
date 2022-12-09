@@ -78,11 +78,6 @@ var FormSubmitHandler = function(submitter, formSelector, callbackSuccess, callb
                             body: data
                         }).then(res => {
                             stopSubmitters();
-
-                            if (!res.ok) {
-                                throw new Error(res.statusText);
-                            }
-
                             return res.json();
                         }).then(response => {
                             if (response.status !== 'success') {
@@ -98,7 +93,7 @@ var FormSubmitHandler = function(submitter, formSelector, callbackSuccess, callb
                             NotifyTop(type, title, response.message ? response.message : '');
 
                             if (response.href
-                                    && response.href !== 'javascript:;'
+                                && response.href !== 'javascript:;'
                             ) {
                                 window.location.href = response.href;
                             }
