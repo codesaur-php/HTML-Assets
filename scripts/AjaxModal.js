@@ -37,8 +37,8 @@ var AjaxModal = function() {
                 url = element.getAttribute('href');
             } else if (element.hasAttribute('data-href')) {
                 url = element.getAttribute('data-href');
-            } 
-
+            }
+            
             if (url === 'javascript:;') {
                 return;
             }
