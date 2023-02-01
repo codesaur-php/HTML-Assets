@@ -103,7 +103,7 @@ var FormSubmitHandler = function(submitter, formSelector, callbackSuccess, callb
                                 type: 'error-error',
                                 title: textError,
                                 error: error
-                            };                            
+                            };
                             if (callbackError) {
                                 return callbackError(error);
                             }

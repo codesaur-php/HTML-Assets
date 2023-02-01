@@ -32,7 +32,7 @@ var ScrollUp = function(
     });
 
     btnScroll.addEventListener('click', function(e) {
-        e.preventDefault();                
+        e.preventDefault();
         scroll(scrollTo);
     });
     btnScroll.addEventListener('mouseover', function() {

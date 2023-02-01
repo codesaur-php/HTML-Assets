@@ -20,7 +20,7 @@ var NotifyTop = function(type, title, content, velocity = 5, delay = 2500) {
     const section = document.createElement('section');
     section.style.cssText = style;
     section.classList.add('notifyTop');
-    section.innerHTML = h_title + closeX + '<div>' + content + '</div>';    
+    section.innerHTML = h_title + closeX + '<div>' + content + '</div>';
     document.body.appendChild(section);
     
     let notify = document.querySelector('.notifyTop');
@@ -39,7 +39,7 @@ var NotifyTop = function(type, title, content, velocity = 5, delay = 2500) {
     notify.querySelector('.notifyTop-close').addEventListener('click', function(e) {
         e.preventDefault();
         
-        this.style.display = 'none';        
+        this.style.display = 'none';
         let interv_ = setInterval(function() {
             top -= 10;
             notify.style.top = top + 'px';

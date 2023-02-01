@@ -33,8 +33,8 @@ Element.prototype.imageInput = function(
     fileNameInput.disabled = true;
     fileNameInput.placeholder = placeholder;
     fileNameInput.classList.add('form-control');
-    inputGroup.appendChild(fileNameInput);    
-
+    inputGroup.appendChild(fileNameInput);
+    
     const inputGroupAppend = document.createElement('div');
     inputGroupAppend.classList.add('input-group-append');
     fileNameInput.after(inputGroupAppend);
@@ -60,7 +60,7 @@ Element.prototype.imageInput = function(
         let reader = new FileReader();
         reader.onload = function(e) {
             imagePreview.src = e.target.result;
-            btnBrowse.innerHTML = change;            
+            btnBrowse.innerHTML = change;
             appendRemoveBtn();
             
             if (!self.name) {
